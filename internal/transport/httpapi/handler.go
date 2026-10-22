@@ -74,7 +74,7 @@ func (h *Handler) healthz(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) register(w http.ResponseWriter, r *http.Request) {
 	var creds domain.Credentials
-	if err := decodeJSON(r, &creds); err != nil {
+	if err := decodeJSON(w, r, &creds); err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
 	}
@@ -88,7 +88,7 @@ func (h *Handler) register(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) login(w http.ResponseWriter, r *http.Request) {
 	var creds domain.Credentials
-	if err := decodeJSON(r, &creds); err != nil {
+	if err := decodeJSON(w, r, &creds); err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
 	}
@@ -147,7 +147,7 @@ func (h *Handler) listTasks(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) createTask(w http.ResponseWriter, r *http.Request) {
 	var task domain.Task
-	if err := decodeJSON(r, &task); err != nil {
+	if err := decodeJSON(w, r, &task); err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
 	}
@@ -178,7 +178,7 @@ func (h *Handler) updateTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var patch domain.TaskPatch
-	if err := decodeJSON(r, &patch); err != nil {
+	if err := decodeJSON(w, r, &patch); err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
 	}

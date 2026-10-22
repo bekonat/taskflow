@@ -46,8 +46,8 @@ func (h *Handler) handleError(w http.ResponseWriter, r *http.Request, err error)
 	}
 }
 
-func decodeJSON(r *http.Request, dst any) error {
-	dec := json.NewDecoder(http.MaxBytesReader(nil, r.Body, 1<<20))
+func decodeJSON(w http.ResponseWriter, r *http.Request, dst any) error {
+	dec := json.NewDecoder(http.MaxBytesReader(w, r.Body, 1<<20))
 	dec.DisallowUnknownFields()
 	return dec.Decode(dst)
 }

@@ -1,0 +1,6 @@
+coverage.out
+*.test
+/bin/
+.env
+.idea/
+.vscode/
